@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .test{
+      background: red;
+      height: 100px;
+      width: 100px;
+    }
+    .test1{
+      background: blue;
+      height: 100px;
+      width: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="cai">
+        <div v-if = 'show' class="test"></div>
+        <div v-else class="test1"></div>
+        <button v-on:click='clickEvent()'>toggle</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#cai',
+            data: {
+                show :true
+            },
+            methods:{
+                clickEvent(){
+                    this.show = !this.show
+                }
+            }
+        })  
+        
+        /*
+        v-on  事件绑定
+        1.  v-on:事件名=‘处理函数’   处理函数写到实例里的methods里
+        2.  处理函数的默认参数是事件对象
+        3.  如果处理函数有其他参数  默认没有事件对象 需要通过 $evnet 手动传递
+        4.  @click =  v-on:click 
+        */
+    </script>
+</body>
+
+</html>

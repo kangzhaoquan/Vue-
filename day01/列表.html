@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        table{
+            
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        td{
+            width: 80px;
+            height: 50px;
+            border: 1px solid #ffffff;
+        }
+        .blue{
+            background: rgb(255, 174, 0);
+        }
+        .yellow{
+            background: yellow;
+        }
+        .red{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="cai">
+        <table>
+            <tr v-for='(m,index) in 6'
+                v-bind:class="index%2==1?'blue':'yellow'"
+                v-on:mouseover='over($event)'
+                v-on:mouseout='leave($event)'
+
+            >
+                <td v-for='(n,index) in 6'
+                   
+                >
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#cai',
+            data:{
+               
+            },
+            methods:{
+                over(e){
+                    e.target.style.background='red'
+                },
+                leave(e){
+                    e.target.style.background=''
+                },
+            }
+        })
+    </script>
+</body>
+</html>

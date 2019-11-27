@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="cai">
+        <input v-hehe type="text">
+    </div>
+
+    <script>
+        // 创建一个指令
+        // Vue.directive('hehe',{
+        //     // 使用该指令的元素 插入到dom中触发
+        //     inserted(el){
+        //         el.focus()
+        //         console.log(el)
+        //     }
+        // })
+        new Vue({
+            el:'#cai',
+            data:{
+
+            },
+            directives:{
+                'hehe':{
+                    inserted(el){
+                        el.focus()
+                console.log(el)
+
+                    }
+                }
+            }
+        })
+
+        /*
+        自定义指令 获取使用该指令的dom 元素 对dom元素进行操作
+
+        全局指令  所有的vue实例都能用
+        Vue.directive('指令名'，{配置项})
+        局部指令
+        */
+    </script>
+</body>
+</html>

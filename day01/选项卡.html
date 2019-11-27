@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        * {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            width: 500px;
+            height: 500px;
+        }
+
+        .nav {
+            width: 500px;
+            height: 80px;
+            border: 1px solid red;
+            font-size: 0;
+
+        }
+
+        li {
+            font-size: 16px;
+            display: inline-block;
+            width: 125px;
+            height: 80px;
+            background: skyblue;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        .sel {
+            background: cornflowerblue;
+        }
+
+        .content {
+            width: 502px;
+            height: 420px;
+            background: #ab6d85;
+            text-align: center;
+            line-height: 420px;
+            color: rgb(235, 220, 19);
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cai">
+        <div class="box">
+            <ul class="nav">
+                <li v-for='(item,index) in list'
+                    v-bind:class='index===selIndex?"sel":""'
+                    v-on:click='toggle(index)'
+                >{{item}}</li>
+            </ul>
+            <div class="content"
+            v-for='(item,index) in list'
+            v-if="selIndex===index"
+            >{{item}}</div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#cai',
+            data: {
+                list: ['迪迦', '戴拿', '盖亚', '赛罗'],
+                selIndex:0
+            },
+            methods:{
+                toggle(index){
+                    this.selIndex = index
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

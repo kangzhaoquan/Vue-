@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="hehe">
+        {{name}}
+    </div>
+    <div id="hehe">
+        {{name}}
+    </div>
+    <script>
+     //配置项 swiper 
+    //  实例化一个vue 对象
+    //  el：页面中哪一个元素 以及子元素 需要被vue 进行处理
+    //  data  数据 中data 中的数据才能插值法进行渲染
+    //  数据绑定 将data里的数据渲染到界面上
+    new Vue({
+        el:'#hehe',
+        data:{
+            name:'你好才哥'
+        }
+    })
+    </script>
+</body>
+
+</html>

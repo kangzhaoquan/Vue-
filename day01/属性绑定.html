@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .test{
+            background: red;
+            height: 100px;
+            width: 100px;
+        }
+        .test1{
+            background: blue;
+            height: 100px;
+            width: 100px;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cai">
+        <div v-bind:class="toggle?'test1':'test'">
+
+        </div>
+        <img :src="toggle?imgs[0]:imgs[1]" alt="">
+        <button v-on:click='clickEvent'>toggle</button>
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#cai',
+            data:{
+                toggle:false,
+                imgs:['http://img5.imgtn.bdimg.com/it/u=1650821586,3391223583&fm=26&gp=0.jpg','http://img3.bitautoimg.com/autoalbum/files/20110927/991/16422399191431_1682650_15.jpg']
+            },
+            methods:{
+                clickEvent(){
+                    this.toggle=!this.toggle
+                }
+            }
+        })
+
+        /*
+        v-bind:属性名
+        标签属性 想用表达式 或者变量  v-bind 属性绑定
+        :class = v-bind:class
+        src class href
+        */
+    </script>
+</body>
+</html>

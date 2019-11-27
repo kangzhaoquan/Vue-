@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .blue span {
+            background: blue;
+        }
+        .yellow span {
+            background: yellow;
+        }
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cai">
+        <ul>
+            <!-- <li v-for='item in list'>{{item}}</li> -->
+            <!-- <li v-for="(item,index) in list">{{index}}_{{item}}</li> -->
+            <!-- <li v-for='(value,key,index) in obj'>{{`${index}.${key}:${value}`}}</li> -->
+            <!-- <li v-for='item in string'>{{item}}</li> -->
+            <!-- <li v-for='item in 50'>{{item}}</li> -->
+        </ul>
+    </div>
+
+    <div id="jiu">
+        <ul>
+            <li v-for='(i,index) in 9'
+                v-bind:class="index%2==1?'blue':'yellow'"
+            >
+                <span v-for='j in i'>
+                    {{j}}*{{i}}={{i*j}}
+                </span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#cai',
+            data: {
+              list:[12,23,232,323,2],
+              obj:{us:123,ps:456},
+              string:'hfdfghjrtyuiy'
+            }
+        }) 
+
+        new Vue({
+            el:'#jiu',
+            data:{
+                list:[1,2,3,4,5,6,7,8,9]
+            }
+        })
+        
+        /*
+            列表渲染
+            指令  directive v-xxx
+            v-for = '(item,index) in list' 
+            item 渲染的每一项  
+            list 要渲染的数据
+            index  索引
+        */
+    </script>
+</body>
+
+</html>
