@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <Fa @hehe='buy'></Fa>
+       <hr>
+       <Son :show='stats'></Son>
+    </div>
+    <!-- 兄弟组件 -->
+    <template id="fa">
+        <div>
+            <button @click="toggle">toggle</button>
+        </div>
+    </template>
+    <!-- 兄弟组件 -->
+    <template id="son">
+            <div>
+               <div class="demo" v-if='show'>
+
+               </div>
+            </div>
+    </template>
+    <script>
+        Vue.component('Fa',{
+            template:'#fa',
+           methods:{
+               toggle(){
+                   console.log(12)
+                   this.$emit('hehe')
+               }
+           }
+        })
+
+        Vue.component('Son',{
+            template:'#son',
+           props:['show']
+        })
+
+        new Vue({
+            el:'#app',
+            data:{
+                stats:true
+            },
+            methods:{
+                buy(){
+                    this.stats=!this.stats
+                }
+            }
+        })
+
+        //props 自定义属性 接收父组件传来的值 
+    </script>
+</body>
+</html>

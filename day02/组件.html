@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="cai">
+        <cai></cai>
+        <cai></cai>
+        <cai></cai>
+    </div>
+    <hr>
+    <div id="cai1">
+           <baba></baba>
+    </div>
+    <script>
+        // 创建组件 
+        // 通过vue.extend 创建一个组件 组件继承来自实例
+        let component=Vue.extend({
+            template:'<div><h1>才哥才哥欢迎你</h1></div>'
+        })
+        // 注册组件
+        // vue.component ('组件名'，要注册的组件)
+        Vue.component('cai',component)
+        // 使用组件
+        // 当做标签来使用
+
+
+        new Vue({
+            el:'#cai',
+            data:{
+
+            }
+        })
+       
+
+        new Vue({
+            el:'#cai1',
+            data:{
+
+            },
+            components:{
+                'baba':component
+            }
+        })
+       
+        /*
+            vue.component 注册的组件是全局的组件
+            components   注册的组件是局部组件 在实例内部注册
+        */
+
+    </script>
+</body>
+</html>

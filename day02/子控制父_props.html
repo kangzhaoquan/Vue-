@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <Fa></Fa>
+    </div>
+    <!-- 父组件 -->
+    <template id="fa">
+        <div>
+          爸爸的钱包余额：{{money}}
+          <hr>
+            <Son :toggle='buy'></Son>
+        </div>
+    </template>
+
+    <!-- 子组件 -->
+    <template id="son">
+            <div>
+               <div class="demo">
+                <button @click='toggle'>买玩具</button>
+               </div>
+            </div>
+        </template>
+    <script>
+        Vue.component('Fa',{
+            template:'#fa',
+            data(){
+                return{
+                    money:100
+                }
+            },
+            methods:{
+                buy(){
+                    this.money-=5
+                }
+            }
+            
+        })
+
+        Vue.component('Son',{
+            template:'#son',
+            props:['toggle'],
+            created(){
+                console.log(this)
+            }
+        })
+
+        new Vue({
+            el:'#app',
+
+        })    
+    </script>
+    <!-- 
+    子控制父
+    通过props将父组件的方法传递给子组件 
+    子组件通过调用父组件的方法修改父组件的值
+    -->
+</body>
+</html>

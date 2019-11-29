@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <One></One>
+        <hr>
+        <Two></Two>
+    </div>
+    <template id="one">
+        <div>
+            <button @click='toggle'>toggle</button>
+        </div>
+    </template>
+    <template id="two">
+        <div>
+            <div class="demo" v-if='stats'>
+
+            </div>
+        </div>
+    </template>
+
+    <script>
+        // 创建一个空实例
+        let vm=new Vue()
+        Vue.component('One',{
+            template:'#one',
+            methods:{
+                toggle(){
+                    vm.$emit('hehe')
+                }
+            }
+            
+        })
+        Vue.component('Two',{
+            template:'#two',
+            data(){
+                return{
+                    stats:true
+                }
+            },
+            methods:{
+                buy(){
+                    this.stats=!this.stats
+                }
+            },
+            created(){
+                vm.$on('hehe',this.buy)
+                // 在组件创建的时候给空实例注册一个事件 处理函数就是buy
+            }
+        })
+        new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

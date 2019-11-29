@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        .blue{
+            background:rgb(129, 193, 235);
+        }
+        .red{
+            background: rgb(236, 131, 189);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <Up></Up>
+        <Down></Down>
+    </div>
+
+    <template id="up">
+        <div>
+            <input type="text" ref='hehe'>
+            <button @click='add'>add</button>
+        </div>
+    </template>
+
+    <template id="down">
+        <div>
+            <li v-for='(item,index) in list'
+                :class='item.state?"blue":"red"'
+            >{{item.msg}}
+                <button @click='del(index)'>del</button>
+                <span v-if='item.state'>已完成</span>
+                <button v-else @click='update(index)'>完成</button>
+            </li>
+        </div>
+    </template>
+    <script>
+        let vm = new Vue()
+        Vue.component('Up', {
+            template: '#up',
+            methods: {
+                add() {
+                    let value = this.$refs.hehe.value
+                    vm.$emit('buy',value)
+                }
+            },
+        })
+        Vue.component('Down', {
+            template: '#down',
+            data() {
+                return {
+                    list: [
+                        { msg: '今晚看迪迦', state: true },
+                        { msg: '今晚看赛罗', state: false },
+                        { msg: '今晚看梦比优斯', state: true }
+                    ],
+                }
+            },
+            methods: {
+                toggle(obj){
+                    this.list.push({msg:obj,state:false})
+                },
+                del(index){
+                    this.list.splice(index,1)
+                    console.log(index)
+                },
+                update(index){
+                    this.list[index].state=true
+                }
+            },
+            created(){
+                console.log(this)
+                vm.$on('buy',this.toggle)
+                // 在组件创建的时候在vue空实例注册一个事件 事件名
+            }
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+
+    <!-- 
+    //事件总线 eventbus
+    vue 有2个方法  on 注册一个事件   emit 触发事件
+    1.创建一个vue的空实例
+    2.通过 $on 往空实例上注册事件 
+    3.只要能获取空实例 通过$emit 来触发事件
+    -->
+</body>
+
+</html>

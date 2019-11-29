@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .blue{
+            background:rgb(129, 193, 235);
+        }
+        .red{
+            background: rgb(236, 131, 189);
+        }
+        #app{
+            width: 400px;
+            height: 500px;
+           
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        .up input{
+            margin-left:90px ;
+        }
+        .down{
+            margin-top:20px ;
+        }
+        .down button:nth-child(1){
+            float: right;
+            margin-right:5px ;
+        }
+        .down button:nth-child(2){
+            float: right;
+            margin-right:15px ;
+        }
+        span{
+            float: right;
+            margin-right:10px ;
+        }
+        li{
+            
+            margin-bottom:10px ;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <Up @buy='toggle'></Up>
+        <Down :show='list'></Down>
+    </div>
+
+    <template id="up">
+        <div class="up">
+            <input type="text" ref='hehe'>
+            <button @click='add'>添加</button>
+        </div>
+    </template>
+
+    <template id="down">
+        <div class="down">
+            <ol>
+                <li v-for="(item,index) in show"
+                    :class='item.state?"blue":"red"'
+                >{{item.msg}}
+                    <button @click='del(index)'>删除</button>
+                    <span v-if='item.state'>已完成</span>
+                    <button v-else @click='update(index)'>完成</button>
+                </li>
+            </ol>
+        </div>
+    </template>
+    <script>
+        Vue.component('Up',{
+            template:'#up',
+           
+            methods:{
+                add(){
+                    let value = this.$refs.hehe.value
+                    this.$emit('buy',value)
+                    // 参数1 自定义事件名  其他参数  需要传递的数据
+                }
+            }
+        })
+        Vue.component('Down',{
+            template:'#down',
+            props:['show'],
+            methods:{
+                update(index){
+                    this.show[index].state=true
+                },
+                del(index){
+                    this.show.splice(index,1)
+                    console.log(index)
+                }
+            }
+        })
+        new Vue({
+            el:'#app',
+           data:{
+            list:[
+                    {msg:'今晚看迪迦',state:true},
+                    {msg:'今晚看赛罗',state:false},
+                    {msg:'今晚看梦比优斯',state:true}
+                ],
+           },
+            methods:{
+                toggle(obj){
+                    this.list.push({msg:obj,state:false})
+                    console.log(obj)
+                    
+                }
+            }
+        })
+
+        /*
+            1.渲染列表 v
+            2.添加事项 v
+            3.完成事项 v
+            4.删除事项 v
+            6.全部 未完成  已完成 
+            7.不同的状态不同的背景
+        */
+    </script>
+</body>
+</html>

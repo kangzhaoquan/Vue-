@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="zang">
+        <Fa></Fa>
+        
+    </div>
+
+    <template id="fa">
+       <div>
+           这里是父组件
+           <Son></Son>
+       </div>
+    </template>
+
+    <template id="son">
+       <div>
+           这里是子组件
+       </div>
+    </template>
+    <script>
+        Vue.component('Fa',{
+            template:'#fa'
+        })
+
+        Vue.component('Son',{
+            template:'#son'
+        })
+
+        new Vue({
+            el:'#zang'
+        })
+
+        //  全局组件没有没有固定的嵌套关系 随着开发者的写法  可以父子  子父  兄弟
+    </script>
+</body>
+</html>

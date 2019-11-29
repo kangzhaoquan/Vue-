@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <Fa></Fa>
+    </div>
+<!-- 父组件 -->
+    <template id="fa">
+        <div>
+            这里是父组件
+            <Son></Son>
+        </div>
+    </template>
+<!-- 子组件 -->
+    <template id="son">
+        <div>
+            这里是子组件
+        </div>
+    </template>
+    <script>
+        // 局部组件有固定的嵌套关系 在组件注册的时候就已经注册好了
+        new Vue({
+            el:'#app',
+            data:{
+
+            },
+            components:{
+                'Fa':{
+                    template:'#fa',
+                    components:{
+                        'Son':{
+                            template:'#son'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

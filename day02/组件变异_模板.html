@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="cai">
+      <banner></banner>
+    </div>
+    <!-- 这里是模板 -->
+    <template id="tp1">
+        <div>
+            <h1>这里是模板</h1>
+        </div> 
+    </template>
+
+   
+    <script>
+    Vue.component('banner',{
+        template:'#tp1'
+    })
+        new Vue({
+            el:'#cai',
+            data:{
+
+            }
+        })
+  
+        /*
+            vue.component 注册的组件是全局的组件
+            components   注册的组件是局部组件 在实例内部注册
+        */
+
+    </script>
+</body>
+</html>

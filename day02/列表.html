@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        table{
+            
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        td{
+            width: 80px;
+            height: 50px;
+            border: 1px solid #ffffff;
+        }
+        .blue{
+            background: rgb(0, 81, 255);
+        }
+        .yellow{
+            background: yellow;
+        }
+        .red{
+            background: red;
+        }
+        .green{
+            background:green;
+        }
+        .pink{
+            background: pink;
+        }
+        .orange{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="cai">
+        <select name="" id="" v-on:change='change'>
+            <option v-bind:value="selIndex" v-for='(item,selIndex) in colors'>{{item}}</option>
+        </select>
+        <table>
+            <tr v-for='(m,trindex) in 6'
+                v-bind:class="trindex%2?colors[colorIndex][0]:colors[colorIndex][1]"
+                v-on:mouseover='over(trindex)'
+                v-bind:style='trindex===selIndex?opacity:{}'
+            >
+                <td v-for='(n,index) in 6'
+                   
+                >
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#cai',
+            data:{
+               opacity:{opacity:0.4},
+               selIndex:0,
+               colors:[['red','green'],['yellow','blue'],['pink','orange']],
+               colorIndex:0
+            },
+            methods:{
+                over(index){
+                    this.selIndex=index
+                },
+               change(e){
+                value = e.target.value
+                console.log(value)
+                this.colorIndex=e.target.value
+               }
+            }
+        })
+    </script>
+</body>
+</html>

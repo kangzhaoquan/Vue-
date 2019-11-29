@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="cai">
+        <input type="text" v-bind:value='msg'
+                            v-on:input="input"
+        >
+        <div>{{msg}}</div>
+    </div>
+
+    <div id="app">
+        <input type="text" v-model='msg'>
+        <div>{{msg}}</div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#cai',
+            data:{
+                msg:1234
+            },
+            methods:{
+                input(e){
+                    this.msg=e.target.value
+                }
+            }
+        })
+
+        new Vue({
+            el:'#app',
+            data:{
+                msg:1234
+            },
+        })
+
+        /*
+            v-model 只能用于表单元素
+            v-model 也能用于组件
+        */
+    </script>
+</body>
+</html>

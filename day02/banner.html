@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <style>
+          * {
+                margin: 0;
+                padding: 0;
+          }
+
+          #container {
+                width: 1130px;
+                height: 286px;
+                margin: 0 auto;
+                position: relative;
+          }
+
+          .img-box {
+                width: 1130px;
+                height: 286px;
+                float: left;
+          }
+
+          .img-box img {
+                width: 100%;
+                height: 100%;
+          }
+          .my-bullet{
+                padding: 10px;
+                color: #ddd;
+          }
+         
+    </style>
+</head>
+
+<body>
+    <div id="cai">
+        <banner></banner>
+        <banner></banner>
+        <banner></banner>
+    </div>
+    <!-- 这里是模板 -->
+    <template id="tp1">
+        <div>
+            <div id="container" class="swiper-container my-container">
+                <div id="wrapper" class="swiper-wrapper">
+                    <div class="img-box swiper-slide">
+                        <img src="https://img.zcool.cn/community/0158725da490f7a801204cd0d1f234.jpg@1380w" alt="">
+                    </div>
+                    <div class="img-box swiper-slide"><img
+                            src="https://img.zcool.cn/community/017c385da4912fa801204cd04049dd.jpg@1380w" alt="">
+                    </div>
+                    <div class="img-box swiper-slide"><img
+                            src="https://img.zcool.cn/community/0179075da6eb29a801209e1f231cef.jpg@1380w" alt="">
+                    </div>
+                    <div class="img-box swiper-slide"><img
+                            src="https://img.zcool.cn/community/01c06a5da52deba801204cd0e15909.jpg@1380w" alt="">
+                    </div>
+                    <div class="img-box swiper-slide"><img
+                            src="https://img.zcool.cn/community/01a3695da4911ea801204cd035db11.jpg@1380w" alt="">
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </template>
+
+
+    <script>
+        Vue.component('banner', {
+            template: '#tp1'
+        })
+        new Vue({
+            el: '#cai',
+            data: {
+
+            }
+        })
+
+        /*
+            vue.component 注册的组件是全局的组件
+            components   4o 在实例内部注册
+        */
+
+    </script>
+     <script src="https://unpkg.com/swiper/js/swiper.js"> </script>
+     <script>
+           var mySwiper=new Swiper(".swiper-container" ,{
+                 navigation: {
+                       nextEl: '.swiper-button-next',
+                       prevEl: '.swiper-button-prev',
+                 },
+                 loop : true,//循环起来
+                 autoplay :{
+                       delay: 3000,
+                       disableOnInteraction: false,// 触碰后自动切换也不会停止
+
+                 },
+                 effect : 'coverflow',
+                 pagination: {
+                       el: '.swiper-pagination',//分页器
+                       clickable :true,//分页器点击事件
+                   
+                 },             
+           });
+
+           mySwiper.el.onmouseover = function(){
+           mySwiper.autoplay.stop();//鼠标悬停事件
+           
+           }
+
+           mySwiper.el.onmouseout = function(){
+           mySwiper.autoplay.start();
+           }
+ 
+           
+     </script>
+</body>
+
+</html>
