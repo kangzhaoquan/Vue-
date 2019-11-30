@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{age}}
+        <button @click='changeAge'>changeAge</button>
+        <hr>
+        {{double}}
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                age:16
+            },
+            methods:{
+                changeAge(){
+                    this.age++
+                }
+            },
+            computed:{
+                double(){
+                    console.log(this)
+
+                    return this.age*2
+                }
+            }
+        })
+    </script>
+    <!-- 
+    computed 计算属性 可以和data里的数据进行关联  得到一个新的数据
+    计算属性的缓存性 只有当关联的数据发生改变了 才重新计算，无关数据发生改变不会引起重新计算
+    -->
+</body>
+</html>

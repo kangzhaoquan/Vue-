@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <script src="https://unpkg.com/swiper/js/swiper.js"> </script>
+    <style>
+        .swiper-container {
+            width: 600px;
+            height: 300px;
+            background: red;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <banner></banner>
+    </div>
+    <template id="banner">
+        <div>
+            <div class="swiper-container">
+                <!-- 600*100  -->
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for='item in imgs'>
+                        <img :src="item" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </template>
+    <script>
+        new Vue({
+            el: '#app',
+            components: {
+                'banner': {
+                    template: '#banner',
+                
+                data() {
+                        return {
+                            imgs: []
+                        }
+                    },
+                    methods: {
+                        initBanner() {
+                            var mySwiper = new Swiper('.swiper-container', {
+                                // direction: 'vertical', // 垂直切换选项
+                                loop: true, // 循环模式选项
+                            })
+                        }
+                    },
+                    created() {
+                        setTimeout(() => {
+                            this.imgs = ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575041967651&di=9d1e70667607272f7ec48e8472144abf&imgtype=0&src=http%3A%2F%2Fpic65.nipic.com%2Ffile%2F20150428%2F12641788_080642713000_2.jpg',
+                                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575042146148&di=60009e18aea822fa99a8ea13220bcf2b&imgtype=0&src=http%3A%2F%2Fpic41.nipic.com%2F20140603%2F18347945_134403333171_2.jpg']
+                                // 上次数据修改引起的dom更新结束后执行回调
+                                this.$nextTick(()=>{
+                                    this.initBanner()
+                                })
+                        }, 500)
+                    }
+                }
+            }
+        })    
+    </script>
+    
+    <!-- 
+    1.生命周期的执行速度远远快于网络请求
+    2.create 发起网络请求  初始化dom元素的数据为[] 紧接着 在 moutend生命周期里 初始化swiper 
+    计算的容器层宽度 为0  swiper 出了滚动不了的问题
+
+    解决方案：  初始化swiper让容器层宽度不为0
+    1.延长初始化的执行时间  x 网络请求时间不固定
+    2.通过修改后的生命里 做初始化   如果有多个数据修改会引起多次初始化
+    3.this.$nextTick(()=>{
+    回调执行的条件 上一次数据 修改引起的dom更新结束执行
+    })
+
+    -->
+</body>
+
+</html>

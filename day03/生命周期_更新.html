@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <banner></banner>
+    </div>
+    <template id="banner">
+        <div>
+           
+            <p id="p">{{num}}</p>
+            <button @click='add'>add</button>
+        </div>
+    </template>
+    <script>
+        Vue.component('banner',{
+            template:'#banner',
+            data(){
+                return{
+                    num:0
+                }
+            },
+            methods:{
+                add(){
+                    this.num++
+                }
+            },
+            beforeUpdate(){
+                console.log('更新之前')
+                // 获取的dom是修改之前 
+                // 只要有数据发生修改就会触发
+                // 更新的生命周期注意赋值的操作可能引起死循环
+                // this.num=5
+                console.log(this)
+                console.log(this.num)
+                console.log(document.getElementById('p'))
+                // 数据发生了改变 dom元素还没有发生改变
+                console.log(document.getElementById('p').innerHTML)
+            },
+            
+            updated(){
+                // console.log('更新结束')
+                // 数据发生改变的时候触发
+                // 获取的dom元素是更新后的dom元素
+                // console.log(this)
+                // console.log(this.num)
+                // console.log(document.getElementById('p'))
+                // console.log(document.getElementById('p').innerHTML)
+
+            }
+
+        })
+        new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

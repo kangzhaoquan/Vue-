@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <banner></banner>
+    </div>
+    <template id="banner">
+        <div>
+            {{name}}
+            <p id="p">hehe</p>
+        </div>
+    </template>
+    <script>
+        Vue.component('banner',{
+            template:'#banner',
+            data(){
+                return{
+                    name:'网易'
+                }
+            },
+            beforeCreate(){
+                console.log('创建之前')
+                // 没有dom 没有数据 
+                // 可以做网络请求
+                console.log(this)
+                console.log(this.name)
+                this.name='呵呵哒'
+
+                console.log(document.getElementById('p'))
+            },
+            created(){
+                console.log('创建结束')
+                // 没有dom 有数据
+                // 可以做网络请求 做数据修改
+                console.log(this)
+                console.log(this.name)
+                this.name='呵呵哒'
+                console.log(document.getElementById('p'))
+            }
+
+        })
+        new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <banner></banner>
+    </div>
+    <template id="banner">
+        <div>
+            {{name}}
+            <p id="p">hehe</p>
+        </div>
+    </template>
+    <script>
+        Vue.component('banner',{
+            template:'#banner',
+            data(){
+                return{
+                    name:'网易'
+                }
+            },
+            beforeMount(){
+                console.log('挂载之前')
+                // 没有dom 有数据 
+                // 可以做网络请求 修改数据
+                console.log(this)
+                console.log(this.name)
+                console.log(document.getElementById('p'))
+            },
+            mounted(){
+                console.log('挂载结束')
+                // 有dom 有数据
+                // dom的初始化操作 比如swiper
+                console.log(this)
+                console.log(this.name)
+                this.name='呵呵哒'
+                console.log(document.getElementById('p'))
+            }
+
+        })
+        new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

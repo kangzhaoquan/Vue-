@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        .test {
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+        position: fixed;
+        top: 50px;
+        left: 50px;
+        } 
+        button {
+    
+        position: fixed;
+        top: 40px;
+        left: 50px;
+        } 
+        .box{
+        height: 9999px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click='toggle'>togglr</button>
+        <div class="box">
+
+        </div>
+        <banner v-if='show'></banner>
+    </div>
+
+    <template id="banner">
+        <div class="test"
+             :style="{background:color}"
+        >
+            
+        </div>
+    </template>
+    <script>
+        Vue.component('banner',{
+            template:'#banner',
+            data(){
+                return{
+                   color:'rgba(255,0,0,0.5)'
+                }
+            },
+            created() {
+            console.log('组件创建')
+            window.addEventListener('scroll',this.changeColor)
+            },
+            beforDestroy(){
+                console.log('销毁之前')
+               
+            },
+            detroyed(){
+                console.log('销毁结束')
+                window.removeEventListener('scroll',this.changeColor)
+
+                
+            },
+            methods: {
+            changeColor(){
+                console.log('改变')
+                let r=parseInt(Math.random()*255)
+                let g=parseInt(Math.random()*255)
+                let b=parseInt(Math.random()*255)
+                let a=Math.random()
+                this.color=`rgba(${r},${g},${b},${a})`
+            }
+            },
+
+        })
+        new Vue({
+            el:'#app',
+            data:{
+                show:true
+            },
+            methods:{
+                toggle(){
+                    this.show=!this.show
+                }
+            }
+        })
+    </script>
+
+    <!-- 
+    组件  banner  div 
+    页面滚动的时候背景颜色随机变
+    1.滚动事件
+    2.操作颜色
+    -->
+</body>
+</html>

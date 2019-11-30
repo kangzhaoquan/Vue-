@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{name}}
+        <button @click='changeName'>changeName</button>
+        <hr>
+        <p>{{age}}</p>
+        <button @click='changeAge'>changeAge</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: '韩梅梅',
+                age: 16
+            },
+            methods: {
+                changeName() {
+                    this.name = '李磊'
+                },
+                changeAge() {
+                    this.age++
+                }
+            },
+            watch: {
+                age: (newValue, oldValue) => {
+                    // watch 监听里的DOM 都是修改前的
+                    console.log('age,变了')
+                    console.log('new', newValue)
+                    console.log('old', oldValue)
+                    console.log(document.getElementsByTagName('p')[0])
+                    console.log(document.getElementsByTagName('p')[0].innerHTML)
+                },
+                // name: (newValue, oldValue) => {
+                //     // watch 监听里的DOM 都是修改前的
+                //     console.log('name,变了')
+                // }
+            }
+        })
+
+
+    </script>
+    <!-- 
+    watch 监听某一个数据的改变 dom 都是修改之前的
+    -->
+</body>
+
+</html>

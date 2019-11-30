@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{time}}
+        <hr>
+        <!-- | 是管道符号 -->
+        {{time|hehe}}
+        <hr>
+        {{time|hehe('/')}}
+        <hr>
+        {{time|hehe('-')}}
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                time:(new Date()).getTime()
+            },
+            filters:{
+                'hehe':(data,tag)=>{
+                    var tag=tag||'.'
+                    let y=(new Date(data)).getFullYear()
+                    let m=(new Date(data)).getMonth()+1
+                    let d=(new Date(data)).getDate()
+                    console.log(y,m,d)
+                    return `${y}${tag}${m}${tag}${d}`
+                }
+            }
+        })
+    </script>
+    <!-- 
+    2019.11.25  2019-11-25  2019/11/25
+    时间戳 
+    过滤器 对传入的数据进行处理
+    全局过滤器
+    Vue.filter('name',处理函数')
+    局部过滤器
+    {
+    template:'',
+    components:'',
+    filters:{
+        'name':()=>{
+
+        }
+    }
+    }
+    | 管道符号
+    注意返回数据->理发店的故事
+    -->
+</body>
+</html>
