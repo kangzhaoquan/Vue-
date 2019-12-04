@@ -1,0 +1,23 @@
+.w(@px){
+    width: unit(@px/@remSize,rem);
+    // @px=375
+    // width: 100rem;
+    // unit(数量，单位) 给数量添加单位
+}
+.h(@px){
+    height: unit(@px/@remSize,rem);
+  }
+.t_c(){
+text-align: center;
+}
+.l_h(@px){
+line-height: unit(@px/@remSize,rem);
+}
+.fixed(@top,@right,@bottom,@left,@color){
+    position: fixed;
+    top: unit(@top/@remSize,rem);
+    right: unit(@right/@remSize,rem);
+    bottom: unit(@bottom/@remSize,rem);
+    left: unit(@left/@remSize,rem);
+    background:@color;
+}
