@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <component-a></component-a>
-    <component-b></component-b>
-    <component-c></component-c>
+    <box></box>
   </div>
 </template>
 
 <script>
-import componentA from './components/A.vue'
-import componentB from './components/B.vue'
-import componentC from './components/C.vue'
+import box from './todolist/box'
+
 export default {
   components:{
-    componentA,componentB,componentC
+    box
   }
 }
 </script>
