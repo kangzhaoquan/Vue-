@@ -13,7 +13,14 @@ module.exports = {
                 pathRewrite:{ //路径重写
                     "^/hehe":''
                 }
-            }
+            },
+            "/hy":{
+                target:'https://u.y.qq.com',
+                changeOrigin:true,
+                pathRewrite:{
+                  "^/hy":''
+                } 
+              }
         }
     },
     // 起别名

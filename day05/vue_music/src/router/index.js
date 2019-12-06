@@ -14,7 +14,7 @@ import Recommend from 'pages/recommend.vue'
 import Rank from 'pages/rank.vue'
 import Search from 'pages/search.vue'
 import Singer from 'pages/singer/singer.vue'
-
+import Detail from 'pages/detail'
 let router = new Router({
     routes:[
         {
@@ -31,7 +31,13 @@ let router = new Router({
         },
         {
             path:'/singer',
-            component:Singer
+            component:Singer,
+            children:[
+                {
+                    path:'detail',
+                    component:Detail
+                }
+            ]
         },
         {
             path:'/',
